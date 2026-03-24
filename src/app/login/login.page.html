@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
+
+    <ion-item>
+      <ion-label position="floating">Correo electrónico</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+      <ion-text color="danger"><small>Ingresa un correo válido</small></ion-text>
+    </div>
+
+    <ion-item class="ion-margin-top">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+      <ion-text color="danger"><small>Mínimo 6 caracteres</small></ion-text>
+    </div>
+
+    <div *ngIf="errorMensaje">
+      <ion-text color="danger"><p>{{ errorMensaje }}</p></ion-text>
+    </div>
+
+    <ion-button
+      expand="block"
+      type="submit"
+      class="ion-margin-top"
+      [disabled]="loginForm.invalid || cargando">
+      <ion-spinner *ngIf="cargando" name="crescent"></ion-spinner>
+      <span *ngIf="!cargando">Ingresar</span>
+    </ion-button>
+
+
+<ion-button>Registrate</ion-button>
+   <ion-button [disabled]="true">Verificar</ion-button>
+
+
+
+  </form>
+
+</ion-content>

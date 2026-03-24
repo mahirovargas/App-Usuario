@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/register"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Validación de Identidad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="page-header">
+    <h2>Verificación Biométrica</h2>
+    <p>Posicione su rostro frente a la cámara</p>
+  </div>
+
+  <!-- Cámara simulada -->
+  <div class="camera-container">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+    <div class="face-oval"></div>
+    <div class="scan-line"></div>
+    <div class="cam-badge">
+      <span class="cam-dot"></span>
+      CÁMARA ACTIVA
+    </div>
+  </div>
+
+  <!-- Hint -->
+  <div class="status-hint">
+    <ion-icon name="scan-circle-outline"></ion-icon>
+    <div>
+      <strong>Posicione su rostro frente a la cámara</strong>
+      <p>Asegúrese de estar en un lugar bien iluminado</p>
+    </div>
+  </div>
+
+  <!-- Progreso -->
+  <div class="progress-section">
+    <div class="progress-labels">
+      <span>ANALIZANDO PUNTOS</span>
+      <span>{{ progress }}%</span>
+    </div>
+    <ion-progress-bar [value]="progress / 100" color="primary"></ion-progress-bar>
+  </div>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button
+      expand="block"
+      class="btn-validate"
+      (click)="validarIdentidad()"
+      [disabled]="progress < 100">
+      <ion-icon name="shield-checkmark-outline" slot="start"></ion-icon>
+      Validar identidad
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
